@@ -10,7 +10,7 @@ sudo apt -y install unrar unzip zip binwalk
 }
 
 [ -f fw.sh ] || {
-	curl -sL -o k2p_fw_master.zip https://github.com/JimLee1996/K2P-FW/archive/master.zip
+	curl -sL -o k2p-fw-master.zip https://github.com/JimLee1996/K2P-FW/archive/master.zip
 	unzip -oj k2p-fw-master.zip K2P-FW-master/fw.sh K2P-FW-master/bin/mksquashfs4 K2P-FW-master/bin/padjffs2 K2P-FW-master/bin/unsquashfs4
 }
 
