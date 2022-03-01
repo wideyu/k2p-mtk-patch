@@ -1,16 +1,16 @@
 #!/bin/sh
 # modify by wideyu at gmail
 
-sudo apt update
-sudo apt -y install unrar unzip zip binwalk
+sudo apt-get update
+sudo apt-get -y install unrar unzip zip binwalk
 
 [ -f k2p_mtk_v20d_breed.bin ] || {
-	curl -sL -o k2p_mtk_v20d_breed.rar http://45.11.26.12/K2P/k2p_mtk_v20d_breed.rar
+	curl -L -o k2p_mtk_v20d_breed.rar http://45.11.26.12/K2P/k2p_mtk_v20d_breed.rar
 	unrar e k2p_mtk_v20d_breed.rar
 }
 
 [ -f fw.sh ] || {
-	curl -sL -o k2p-fw-master.zip https://github.com/JimLee1996/K2P-FW/archive/master.zip
+	curl -L -o k2p-fw-master.zip https://github.com/JimLee1996/K2P-FW/archive/master.zip
 	unzip -oj k2p-fw-master.zip K2P-FW-master/fw.sh K2P-FW-master/bin/mksquashfs4 K2P-FW-master/bin/padjffs2 K2P-FW-master/bin/unsquashfs4
 }
 
@@ -24,12 +24,12 @@ sudo apt -y install unrar unzip zip binwalk
 }
 
 [ -f trojan ] || {
-	curl -sL -o trojan https://github.com/hanwckf/Trojan-pdv-build/releases/download/v20220216/trojan-mips1004kec-static
+	curl -L -o trojan https://github.com/hanwckf/Trojan-pdv-build/releases/download/v20220216/trojan-mips1004kec-static
 	chmod +x trojan
 }
 
 [ -f cacert.pem ] || {
-	curl -sL -o cacert.pem https://curl.haxx.se/ca/cacert.pem	
+	curl -L -o cacert.pem https://curl.haxx.se/ca/cacert.pem	
 }
 
 [ -f trojan_monitor.sh ] || {
@@ -90,12 +90,12 @@ EOF
 }
 
 ./fw_patch.sh -e k2p_mtk_v20d_breed.bin
-rm -f squashfs-root/usr/bin/frpc
-cp -f cacert.pem squashfs-root/etc/
-cp -f trojan squashfs-root/usr/bin/
-cp -f trojan_config.json squashfs-root/etc/
-cp -f trojan_monitor.sh squashfs-root/root/
+sudo rm -f squashfs-root/usr/bin/frpc
+sudo cp -f cacert.pem squashfs-root/etc/
+sudo cp -f trojan squashfs-root/usr/bin/
+sudo cp -f trojan_config.json squashfs-root/etc/
+sudo cp -f trojan_monitor.sh squashfs-root/root/
 ./fw_patch.sh -c k2p_mtk_v20d_patch.bin
-cat k2p_mtk_v20d_patch.bin <(dd if=/dev/zero bs=1 count=$(expr 16121856 - $(wc -c k2p_mtk_v20d_patch.bin | awk '{print $1}')) | LC_CTYPE=C tr '\0' '\377') > k2p_mtk_v20d_patch_15M.bin
+dd if=/dev/zero bs=1 count=$(expr 16121856 - $(wc -c k2p_mtk_v20d_patch.bin | awk '{print $1}')) | LC_CTYPE=C tr '\0' '\377' | cat k2p_mtk_v20d_patch.bin - > k2p_mtk_v20d_patch_15M.bin
 zip -j -9 k2p_mtk_v20d_patch.zip k2p_mtk_v20d_patch.bin
 zip -j -9 k2p_mtk_v20d_patch_15M.zip k2p_mtk_v20d_patch_15M.bin
