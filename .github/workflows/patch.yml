@@ -35,12 +35,15 @@ jobs:
           overwrite: true
           file_glob: true
           
-      - name: Commit
+      - name: Cleanup
         run: |
+          rm -f k2p-fw-master.zip
           rm -f k2p_mtk_v20d_breed.rar
           rm -f k2p_mtk_v20d_patch*
           rm -f kernel.bin
           sudo rm -rf squashfs-root/
-      - uses: stefanzweifel/git-auto-commit-action@v4
+          
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "patch.sh Update"
+          commit_message: "Action Auto"
