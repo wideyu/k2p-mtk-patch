@@ -2,7 +2,7 @@
 # modify by wideyu at gmail
 
 sudo apt update
-sudo apt -yes install unrar unzip zip binwalk
+sudo apt -y install unrar unzip zip binwalk
 
 [ -f k2p_mtk_v20d_breed.bin ] || {
 	curl -sL -o k2p_mtk_v20d_breed.rar http://45.11.26.12/K2P/k2p_mtk_v20d_breed.rar
