@@ -127,4 +127,5 @@ sudo cp -f trojan_monitor.sh squashfs-root/root/
 mtd -r write k2p_mtk_v20d_patch.bin firmware
 ```
 刷机方法2: 下载k2p_mtk_v20d_patch_15M.zip
+
 在Web管理网页恢复固件k2p_mtk_v20d_patch_15M.bin。
