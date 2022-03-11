@@ -110,7 +110,7 @@ EOF
 ```
 
 ## 0x06 生成刷机文件，发布Release
-选择删除了最大size的frpc，生成的刷机文件发布到Repo Release
+选择删除了最大size的frpc，生成的刷机文件发布到Repo Release。
 ```bash
 ./fw_patch.sh -e k2p_mtk_v20d_breed.bin
 sudo rm -f squashfs-root/usr/bin/frpc
@@ -120,9 +120,11 @@ sudo cp -f trojan_config.json squashfs-root/etc/
 sudo cp -f trojan_monitor.sh squashfs-root/root/
 ./fw_patch.sh -c k2p_mtk_v20d_patch.bin
 ```
-刷机方法1:
+
+## 0x07 刷机
+刷机方法1: 下载k2p_mtk_v20d_patch.zip
 ```bash
 mtd -r write k2p_mtk_v20d_patch.bin firmware
 ```
-刷机方法2:
-k2p_mtk_v20d_patch_15M.bin 可以在Web管理网页恢复固件
+刷机方法2: 下载k2p_mtk_v20d_patch_15M.zip
+在Web管理网页恢复固件k2p_mtk_v20d_patch_15M.bin。
