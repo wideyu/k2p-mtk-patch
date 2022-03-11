@@ -110,7 +110,7 @@ EOF
 ```
 
 ## 0x06 生成刷机文件，发布Release
-选择删除了最大size的frpc
+选择删除了最大size的frpc，生成的刷机文件发布到Github Release
 ```bash
 ./fw_patch.sh -e k2p_mtk_v20d_breed.bin
 sudo rm -f squashfs-root/usr/bin/frpc
